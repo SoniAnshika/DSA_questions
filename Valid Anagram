@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        
+        map<char,int>m,mi;
+        int sl=s.length(),tl=t.length();
+        if(sl!=tl)
+            return false;
+        for(int i=0;i<sl;i++)
+        {
+            m[s[i]]++;
+            mi[t[i]]++;
+        }
+        for(int i=0;i<sl;i++)
+        {
+            if(m[s[i]]!=mi[s[i]])
+                return false;
+        }
+        return true;
+        
+    }
+};
