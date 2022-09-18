@@ -1,0 +1,84 @@
+class Solution {
+public:
+void merge(int *input, int si, int ei)
+{
+int i= si;
+int mid= (si+ei)/2;
+int j= mid+1;
+int k= 0;
+int r= ei;
+int arr[ei-si+1];
+// now we'll start comparing the elements of the two arrays one by one
+while(i<=mid&&j<=r){// this condition for "while loop" will keep check if any of the arrays get exhausted
+if(input[i]<=input[j]){
+arr[k]=input[i];
+i++;// moving the pointer for the left array by one unit..
+}
+else if(input[i]>input[j]) {
+arr[k]=input[j];
+j++;// moving the pointer for the right array by one unit..
+}
+k++;// now, element will be filled in the next index of arr...
+}
+
+// in case, if any of the arrays get exhausted...
+// if the left array get exhausted, copy the remaining elements as it is.
+while(j<=r){
+arr[k]=input[j];
+k++;// both j and k pointers need to be moved together this time..
+j++;
+}
+
+//if the right array get exhausted, copy the remaining elements as it is.
+while(i<=mid){
+arr[k]= input[i];
+k++;
+i++;
+}
+
+// copy the elements of the newly created array into the original one.
+int z=0;
+for(k=si;k<=ei;k++){
+input[k]= arr[z];
+z++;
+}
+
+}
+
+void helper(int* input, int si, int ei){
+
+if(si>=ei)
+return;
+
+int mid= (si+ei)/2;
+
+helper(input,si,mid);
+helper(input,mid+1,ei);
+merge(input,si,ei);
+}
+
+void mergeSort(int* input, int length){
+
+int si= 0;
+int ei= length-1;
+helper(input, si, ei);
+}
+vector<int> sortArray(vector<int>& nums) {
+
+    int n = nums.size( );
+    int input[n];
+    
+    for(int i=0;i<n;i++){
+        input[i] = nums[i];
+    }
+    
+    mergeSort(input, n);
+    
+    for(int i=0;i<n;i++){
+        nums[i] = input[i];
+    }
+    
+    return nums;
+    
+}
+};
