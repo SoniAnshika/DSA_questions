@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int ans=0;
+    void solve(TreeNode* root,int sum,long long &curr)
+    {
+        if(!root)return;
+        curr=(curr+root->val);  
+        if(curr==sum)ans++;     //if(curr==targetSum, increament ans)
+        solve(root->left,sum,curr);  //recur for left subtree
+        solve(root->right,sum,curr);   //recur for right subtree
+        curr-=root->val;     //Backtracking 
+    }
+    
+    int pathSum(TreeNode* root, int targetSum) {
+        
+        
+        if(!root)return 0;
+        long long curr=0;
+        solve(root,targetSum,curr);
+        pathSum(root->left,targetSum);  //taking left child as root and calling pathSum function
+        pathSum(root->right,targetSum);  ////taking left child as root and calling pathSum function
+        return ans;
+    }
+};
