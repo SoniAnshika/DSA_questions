@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        int n = nums.size();
+        
+        if(n == 1 || n == 2){
+            return true;
+        }
+        int diff = 0;
+            
+        for(int i = 0; i<n-1; i++){
+            diff = nums[i+1] - nums[i];
+            if(diff == 0){
+                continue;
+            }
+            else{
+                break;
+            }
+        }
+        
+        if(diff > 0){
+
+            for(int i = 1; i<n-1; i++){
+                if(nums[i+1] - nums[i] < 0){
+                    return false;
+                }
+            }
+        }
+
+        else if(diff < 0){
+
+            for(int i = 1; i<n-1; i++){
+                if(nums[i+1] - nums[i] > 0){
+                    return false;
+                }
+            }
+        }
+
+     return true;
+    }
+};
