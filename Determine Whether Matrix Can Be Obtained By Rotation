@@ -1,0 +1,40 @@
+```
+class Solution {
+public:
+    
+	//Function rotate to rotate the matrix by 90 degree
+    void rotate(vector<vector<int>>&mat)
+    {
+        int n=mat.size();
+		
+		//First transpose the matrix
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                swap(mat[i][j],mat[j][i]);
+            }
+        }
+        //Then swap the matrix
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n/2;j++)
+            {
+                swap(mat[i][j],mat[i][n-j-1]);
+            }
+        }
+    }
+    
+    bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
+	
+	   /*Loop running 4 time coz 360 degree / 90 = 4. Hence possible rotations of 90 degree ca happen at most 4 times. */
+        for(int i=0;i<4;i++)
+        {
+            rotate(mat);
+            if(mat==target)
+                return true;
+        }
+        
+        return false;
+    }
+};
