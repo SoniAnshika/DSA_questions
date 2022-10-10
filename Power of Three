@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if(n==0)
+            return false;
+        if(n==1)
+            return true;
+        int d;
+       while(n!=1)
+       {
+           d=n%3;
+           if(d!=0)
+               return false;
+           n/=3;
+       }
+        
+        return true;
+    }
+};
