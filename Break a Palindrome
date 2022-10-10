@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string breakPalindrome(string palindrome) {
+        
+       
+        int n=palindrome.length();
+        
+        // If there is only one character in the string that we cannot change.
+        if(n==1)
+            return "";
+        
+        int i=0;
+        
+        // Count the number of 'a' in the string.
+        while(i<n && palindrome[i]=='a')
+            i++;
+        
+        //If the string contains all the 'a's then convert its last character to 'b'.
+        if(i>=n)
+        {
+            palindrome[n-1]='b';
+        }
+        
+        // If length of the string is odd and number of a's in the string is even then convert the last character to 'b' coz this will form the smallest form.
+        if(n%2==1 && i==n/2)
+        {
+            palindrome[n-1]='b';
+        }
+        
+        
+        // Otherwise convert the ith character to 'a'.
+        else
+        {
+            palindrome[i]='a';
+        }
+        
+        return palindrome;
+    }
+};
