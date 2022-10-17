@@ -1,0 +1,26 @@
+vector<int> Solution::findPerm(const string A, int B) {
+    
+    vector<int>v(B,0);
+    
+    int z=1;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]=='I')
+        {
+            v[i]=z;
+            z++;
+        }
+    }
+    
+    z=B;
+    for(int i=0;i<v.size();i++)
+    {
+        if(v[i]==0)
+        {
+            v[i]=z;
+            z--;
+        }
+    }
+    
+    return v;
+}
