@@ -1,0 +1,30 @@
+class Solution {
+ using s = pair<string,int>;
+private:
+    struct order {
+        bool operator()(s& l, s& r) {
+            if (l.second == r.second) return l.first < r.first;
+            return l.second > r.second;
+        }
+    };
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        //get frequency of each word
+        unordered_map<string,int> f;
+        for (string& w : words) f[w]++;
+        
+        priority_queue<s, vector<s>, order> p;
+        for (auto& x : f) {
+            p.push(x);
+            if (size(p) > k) p.pop();
+        }
+        
+        int n = size(p);
+        vector<string> ans(n);
+        for (int i = n - 1; i > -1; i--) {
+            ans[i] = (p.top()).first;
+            p.pop();
+        }
+        return ans;
+    }
+};
