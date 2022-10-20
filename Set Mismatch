@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        map<int,int>mp;
+        for(auto i:nums)mp[i]++;
+        int missing=0;
+        int n=*max_element(nums.begin(),nums.end());
+        for(int i=1;i<=n+1;i++)
+        {
+            if(mp.find(i)==mp.end())
+            {
+                missing=i;
+                break;
+            }
+        }
+        for(auto i:mp)
+        {
+            if(i.second>1)return {i.first,missing};
+        }
+        return {-1,-1};
+    }
+};
