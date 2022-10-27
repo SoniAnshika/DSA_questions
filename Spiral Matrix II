@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) 
+    {
+        
+        vector<vector<int>> ans(n,vector<int>(n));
+        
+        int k = 1,rs = 0,cs = 0,ce = n-1,re = n-1,i;
+        
+        while(rs<=re && cs <= ce)
+        {
+            for(i = cs; i<= ce; i++){
+                ans[rs][i] = k++;
+            }
+            rs++;
+            
+            for(i = rs; i<= re; i++){
+                ans[i][ce] = k++;
+            }
+            ce--;
+            
+            for(i = ce; i>= cs; i--){
+                ans[re][i] = k++;
+            }
+            re--;
+            
+            for(i = re; i>=rs; i--){
+                ans[i][cs] = k++;
+            }
+            cs++;
+        }
+        return ans;
+    }
+};
