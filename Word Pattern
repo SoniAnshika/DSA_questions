@@ -1,0 +1,46 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+    vector<string> v;
+    string word;
+
+    // Dividing string into words using string stream
+    stringstream iss(s);
+    
+    while(iss>>word){
+        v.push_back(word);
+    }
+
+    // Checking size of pattern and string if both not same then return false
+    if(v.size()!=pattern.size()){
+        return false;
+    }
+
+    // Create unorderd map to store pattern as well as word eg. a: dog, b: cat
+    unordered_map<char, string> m;
+    set<string> st;
+        
+    for(int i=0;i<pattern.size();i++)
+    {
+        if(m.find(pattern[i])!=m.end()){
+    // if yes then check if previous word matches with current or not if not return false
+				if(m[pattern[i]]!=v[i]){
+                return false;
+            }
+        }
+// If pattern is not already present in map then add
+// Before adding check if count of set is greater than 0 then that word is already there in map ie. different pattern with same word which is false
+        else{
+            if(st.count(v[i])>0){
+                return false;
+            }
+            
+            m[pattern[i]]= v[i];
+            st.insert(v[i]);
+        }
+        
+    }
+    return true;
+    
+}
+};
