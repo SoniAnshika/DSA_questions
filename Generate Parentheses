@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+    void subseq(int c1,int c2,string v,vector<string> &ans,int n)
+    {
+        if(c1==n)
+        {
+            // if there are n open '(', we simply push the rest closing ')'
+            while(c2<n)
+            {
+                v+=")";
+                c2+=1;
+            }
+			// v is pushed to the answer vector
+			
+            ans.push_back(v);
+            return;
+        }
+		
+        subseq(c1+1,c2,v+"(",ans,n);
+		
+        if(c2<c1){
+            subseq(c1,c2+1,v+")",ans,n);    
+        }
+    }
+
+    vector<string> generateParenthesis(int n) 
+    {
+        vector<string> ans;
+        string v;
+        subseq(0,0,v,ans,n);
+
+        return ans;
+    }
+};
