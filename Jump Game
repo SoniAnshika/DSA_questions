@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool fn(vector<int> nums, int n){
+        if(n==nums.size()-1) return true;
+        if(n>=nums.size()) return false;
+        
+        bool res=false;
+        for(int i=1; i<=nums[n]; i++){
+            res= res||fn(nums, n+i);
+        }
+        return res;
+    }
+    
+    bool canJump(vector<int>& nums) {
+        return fn(nums, 0);
+    }
+};
