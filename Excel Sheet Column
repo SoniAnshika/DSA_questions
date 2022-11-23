@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int titleToNumber(string columnTitle) {
+        int n=columnTitle.size();
+        map<char,int> m;// for storing characters from A to Z
+        int i=1;
+        for(char c='A';c<='Z';c++)
+        {
+            m[c]=i;
+            i++;
+        }
+        if(n==1)
+        return m[columnTitle[0]];
+        int x=n-1;
+        int s=0;
+        for(int i=0;i<n;i++)
+        {
+            int y=x;
+            int p=1;
+            while(y--)
+            {
+                p*=26;//multiply 26  n-1 times for zeroth place n-2 for 1st n-3 for 2nd place......
+				// where n is the length of string
+            }
+            if(p!=1)
+            s+=p*m[columnTitle[i]];
+            x--;
+        }
+        s+=m[columnTitle[n-1]];
+        return s;
+    }
+};
