@@ -1,0 +1,15 @@
+class Solution {
+public:
+int singleNumber(vector<int>& nums) {
+    int ans=0,sum;
+    for(int i=0;i<32;i++){
+        sum=0;
+        int tmp=1<<i;
+        for(int j=0;j<nums.size();j++){
+            if(tmp & nums[j]) sum++;
+        }
+        if(sum%3) ans+=tmp;
+    }
+    return ans;
+    }
+};
