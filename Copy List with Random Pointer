@@ -1,0 +1,50 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+class Solution {
+ public:
+    Node* copyRandomList(Node* input) {
+        if(input==nullptr){
+            return nullptr;
+        }
+  
+        map<Node*, Node*> mp; 
+        auto* newHead = new Node(input->val); 
+        mp[input]=newHead;
+
+        auto* p1 = input; 
+        auto* p2 = newHead;
+    
+        while(p1->next!=nullptr){
+            p2->next = new Node(p1->next->val);
+            p1 = p1->next;
+            p2 = p2->next;
+            mp[p1]=p2;
+        }
+        
+        p1 = input;
+        p2 = newHead;
+
+       while(p1!=nullptr){
+           p2->random = mp[p1->random];
+           p1= p1->next;
+           p2 = p2->next;
+       }
+        
+      return newHead;
+
+    }
+};
