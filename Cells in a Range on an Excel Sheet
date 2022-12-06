@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<string> cellsInRange(string S) {
+        char c = S[0], d = S[3]; // column labels
+        char a = S[1]; // row labels
+        char b = S[4];
+        vector<string> res;
+        for (char i = c; i <= d; i++) {
+            for (char j = a; j <= b; j++) {
+                string s;
+                s += i; s += j;
+                res.push_back(s);
+            }
+        }   
+        return res;
+    }
+};
