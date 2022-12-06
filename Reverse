@@ -1,0 +1,25 @@
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        flag=0
+        s1=2**31-1
+        s2=(-2)**31
+        rev=0;
+        if(x<0):
+            x=-x
+            flag=1
+        while x>0:
+            d=x%10
+            rev=10*rev+d
+            x=x/10 
+        if(flag==1):
+            rev=-rev
+        if(rev>=s2 and rev<=s1):
+            return rev
+        else:
+            return 0
+            
+        
