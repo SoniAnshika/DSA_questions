@@ -16,3 +16,15 @@ public:
     }
 };
 
+OR 
+
+class Solution {
+public:
+    bool checkTree(TreeNode* root) {
+        int s=root->val;
+        int l=root->left->val;
+        int r=root->right->val;
+        
+        return s==(l+r);
+    }
+};
