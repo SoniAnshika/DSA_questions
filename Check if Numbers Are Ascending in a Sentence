@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool areNumbersAscending(string s) 
+    {
+        istringstream ss(s);
+        string ans;
+        int val1=0;
+        int val2=0;
+        while(ss>>ans)
+        {
+            if(ans[0]>='1'&&ans[0]<='9')
+            {
+                if(val1==0)
+                {
+                    val1=stoi(ans);
+                }
+                else 
+                {
+                    val2=stoi(ans);
+                    if(val1>=val2)
+                    {
+                        return false;
+                    }
+                    val1=val2;
+                }
+            }
+        }
+        return true;
+    }
+};
