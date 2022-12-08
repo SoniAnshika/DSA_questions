@@ -1,0 +1,8 @@
+class Solution {
+public:
+    bool checkString(string s) {
+        string x=s;
+        sort(x.begin(),x.end());
+        return x==s;
+    }
+};
