@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int findFinalValue(vector<int>& nums, int original) {
+        cout<<binary_search(nums.begin(),nums.end(),original)<<endl;
+        while(1)
+        {
+            auto it = find(nums.begin(), nums.end(), original);
+            if(it != nums.end())
+            {
+                original*=2;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return original;
+    }
+};
