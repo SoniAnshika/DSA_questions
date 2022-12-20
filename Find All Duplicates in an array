@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> result;
+        int size = nums.size();
+        std::sort(nums.begin(), nums.end());
+        
+        int currentNum = 0;
+
+        while(nums.size() > 0)
+        {
+            if(nums[0] != currentNum)
+            {
+                currentNum = nums[0];
+            }
+            else if(nums[0] == currentNum && nums.size() < size)
+            {
+                result.push_back(currentNum);
+            }
+            nums.erase(nums.begin());
+        }
+        
+        return result;
+    }
+};
