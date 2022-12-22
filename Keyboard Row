@@ -1,0 +1,46 @@
+class Solution {
+public:
+  public:
+	vector<string> findWords(vector<string>& words) {
+
+		unordered_set <char> row1 = { 'q','Q','w','W','e','E','r','R','t','T','y','Y','u','U','i','I','o','O','p','P' };
+		unordered_set <char> row2 = { 'a','A','s','S','d','D','f','F','g','G','h','H','j','J','k','K','l','L'};
+		unordered_set <char> row3 = { 'z','Z','x','X','c','C','v','V','b','B','n','N','m','M'};
+
+		vector<string> res;
+
+		for (auto &word : words)
+		{
+			bool r1 = true, r2 = true, r3 = true;
+        
+			for (auto & ch : word)
+			{
+				if (r1) 
+                {
+					auto it = row1.find(ch);
+					if (it == row1.end()) 
+                        r1 = false;
+				}
+
+				if (r2) 
+                {
+					auto it = row2.find(ch);
+					if (it == row2.end()) 
+                        r2 = false;
+				}
+
+				if (r3) 
+                {
+					auto it = row3.find(ch);
+					if (it == row3.end()) 
+                        r3 = false;
+				}
+			}
+
+			if (r1 || r2 || r3) 
+                res.push_back(word);
+		}
+
+		return res;
+	}
+};
