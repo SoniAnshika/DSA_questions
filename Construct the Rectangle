@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> constructRectangle(int area) {
+        int a = sqrt(area), b = a;
+        for(; ;) {
+            if(a * b < area)
+                ++a;
+            else if(a * b > area)
+                --b;
+            else
+                break;
+        }
+        return vector<int>{a, b};
+    }
+};
