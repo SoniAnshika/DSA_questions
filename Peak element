@@ -1,0 +1,20 @@
+class Solution
+{
+    public:
+    
+    int peakElement(int arr[], int n)
+    {
+       // Your code here
+       int ind=0,mx=arr[0];
+       for(int i=1;i<n;i++)
+       {
+           if(mx<arr[i])
+           {
+               mx=arr[i];
+               ind=i;
+           }
+       }
+       return ind;
+       
+    }
+};
