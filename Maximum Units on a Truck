@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& b, int t) {
+        
+        int sum = 0;
+
+        //swaping the numberOfUnitsPerBox with numberOfBoxes
+        for(int i=0;i<b.size();i++){
+            swap(b[i][0],b[i][1]);
+        }
+        
+        //sorting  the 2D array in descending order 
+        sort(b.rbegin(),b.rend());
+
+        //iterating the 2D array until it ends or the truckSize decreases to 0
+        for(int i=0; i<b.size() && t>=0; i++){
+            //multiplying the min(truckSize,numberOfBoxes) with numberOfUnitsPerBox and adding it to the sum
+            sum += b[i][0] * min(b[i][1],t);
+            //decrement of the truckSize
+            t -= b[i][1];
+        }
+
+        return sum;
+
+    }
+};
