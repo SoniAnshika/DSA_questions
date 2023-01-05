@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        queue<int>pos,neg;
+        for(auto value : nums)
+        {
+            if(value>=0)
+                pos.push(value);
+            else
+                neg.push(value);
+        }
+
+        vector<int>ans;
+
+        while(!pos.empty() && !neg.empty())
+        {
+            ans.push_back(pos.front());
+            pos.pop();
+            ans.push_back(neg.front());
+            neg.pop();
+        }
+
+        return ans;
+    }
+};
