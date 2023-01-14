@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string smallestEquivalentString(string s1, string s2, string baseStr) {
+        vector<char>map(26,0);
+        for(int i=0;i<26;i++)
+        {
+            map[i]=i+'a';
+        }
+
+        for(int i=0;i<s1.length();i++)
+        {
+            char replace=max(map[s1[i]-'a'],map[s2[i]-'a']);
+            char put=min(map[s1[i]-'a'],map[s2[i]-'a']);
+
+            for(int i=0;i<26;i++)
+            {
+                if(map[i]==replace)
+                    map[i]=put;
+            }
+        }
+
+        for(int i=0;i<baseStr.length();i++)
+        {
+            baseStr[i]=map[baseStr[i]-'a'];
+        }
+
+        return baseStr;
+    }
+};
