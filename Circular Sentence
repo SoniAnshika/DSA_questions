@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isCircularSentence(string sentence) {
+        stringstream s(sentence);
+        string word;
+        int n=sentence.length(),c1=0;
+        char c;
+
+        if(sentence[0]!=sentence[n-1])
+            return false;
+
+        while(s>>word)
+        {
+            if(word[0]!=c && c1!=0)
+                return false;
+            int n1=word.length();
+            c=word[n1-1];
+            c1++;
+        }
+
+        return true;
+    }
+};
