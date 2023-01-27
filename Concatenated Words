@@ -1,0 +1,37 @@
+class Solution {
+public:
+
+    bool concat_possible(string &word,vector<string>&words,unordered_map<string,int>&m)
+    {
+        int n=word.size();
+        for(int i=1;i<n;i++)
+        {
+            string prefix=word.substr(0,i);
+            string suffix=word.substr(i);
+
+            if(m[prefix] && (m[suffix] || concat_possible(suffix,words,m)))
+                return true;
+
+        }
+
+        return false;
+    }
+
+    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
+        vector<string>ans;
+        unordered_map<string,int>m;
+
+        for(auto i:words)
+        {
+            m[i]++;
+        }
+
+        for(auto word:words)
+        {
+            if(concat_possible(word,words,m))
+                ans.push_back(word);
+        }
+
+        return ans;
+    }
+};
