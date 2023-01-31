@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string arrangeWords(string text) {
+        transform(text.begin(), text.begin()+1,text.begin(), ::tolower);
+        map<int,vector<string> > m;
+        string str = "";
+        int l = text.length();
+        for(int i=0; i<l; ++i){
+            if(text[i] != ' '){
+                str += text[i];
+            }
+            else{
+                int p = str.length();
+                m[p].push_back(str);
+                str = "";
+            }
+        }
+        int p = str.length();
+        m[p].push_back(str);
+        
+        str = "";
+        for(auto itr : m){
+            for(auto i : itr.second){
+                str += i + " ";
+            }
+        }
+        str.pop_back();
+        transform(str.begin(),str.begin()+1,str.begin(), ::toupper);
+
+        return str;
+    }
+};
