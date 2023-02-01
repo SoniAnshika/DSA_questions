@@ -1,0 +1,7 @@
+class Solution {
+public:
+    int smallestEvenMultiple(int n) {
+        int hcf=__gcd(2,n);
+        return 2*n/(hcf);
+    }
+};
