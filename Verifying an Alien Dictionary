@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+          map<char,int> m;
+        int c=0;
+        for(auto x:order)
+        {
+         m[x-'a']=c++;   
+        }
+        
+        for(auto &x:words)
+        {
+            for(auto &y:x)
+            {
+                y=m[y-'a'];
+            }
+        }
+        return is_sorted(words.begin(),words.end());
+    }
+};
