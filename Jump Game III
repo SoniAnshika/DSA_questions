@@ -1,0 +1,35 @@
+class Solution {
+private:
+    bool canReach(int ind,vector<int>&vis,vector<int>&arr)
+    {
+        if(arr[ind]==0)
+            return true;
+        
+        if(vis[ind]==1)
+            return false;
+
+        bool left=false,right=false;
+
+        if(ind-arr[ind]>=0)
+        {
+            vis[ind]=true;
+            left=canReach(ind-arr[ind],vis,arr);
+        }
+
+        if(ind+arr[ind]<arr.size())
+        {
+            vis[ind]=true;
+            right=canReach(ind+arr[ind],vis,arr);
+        }
+
+        return left|right;
+    }
+
+public:
+    bool canReach(vector<int>& arr, int start) {
+
+        vector<int> visited(arr.size(),0);
+        return canReach(start,visited,arr);
+        
+    }
+};
