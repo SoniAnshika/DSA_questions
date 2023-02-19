@@ -1,0 +1,56 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        // taking vector for result.
+        vector<vector<int>> res;
+        //initialize the queue.
+        queue<TreeNode*> q;
+        // if root exist push the root
+        if(root) 
+            q.push(root);
+
+        // have direction dir. YOU can think of problems where we use flags, we are using direction as flag.
+        int dir = 0;
+        
+        // its a same template of bfs->> level order traversal.
+        while(!q.empty()){
+            int j = q.size();
+            vector<int> temp;
+            
+            for(int i=0; i<j;i++){
+                TreeNode* t = q.front();
+                q.pop();
+                temp.push_back(t->val);
+                if(t->left != NULL) q.push(t->left);
+                if(t->right != NULL) q.push(t->right);
+            }
+            
+
+            //add this things
+            // if level is 1 then reverse the level order traversal we made then make dir or flag as 0 so that we must not do reverse level order in next step.
+            if(dir==1){
+                reverse(temp.begin(), temp.end());
+                dir = 0;
+            }
+            else{
+                dir = 1;
+            }
+            res.push_back(temp);
+            
+        }
+        return res;
+        
+    }
+};
