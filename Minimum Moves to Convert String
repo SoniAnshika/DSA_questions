@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minimumMoves(string s) {
+        int n=s.length(),j=0,c=0;
+        
+        while(j<n)
+        {
+            if(s[j]=='X')
+            {
+                c++;
+                j=j+3;
+            }
+            else
+            {
+                j++;
+            }
+        }
+
+        return c;
+    }
+};
