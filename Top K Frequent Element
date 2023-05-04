@@ -1,0 +1,25 @@
+int cookies(int k, vector<int> A) {
+
+int least_sweet1 = 0, least_sweet2 = 0, number_of_operations = 0;
+    priority_queue<int, vector<int>, greater<int>> storage(A.begin(), A.end());
+
+    while(storage.size() > 1){
+           
+        least_sweet1 = storage.top();
+        if(least_sweet1 >= k)
+            break;
+         
+        storage.pop(); 
+        least_sweet2 = storage.top();
+        storage.pop(); 
+        
+        storage.push(least_sweet1 + 2*least_sweet2);
+        number_of_operations++;   
+    }
+
+    if(storage.size() >= 1 && least_sweet1 < k)
+        number_of_operations = -1;
+        
+    return number_of_operations;
+
+}
