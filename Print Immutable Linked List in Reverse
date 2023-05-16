@@ -1,0 +1,14 @@
+class Solution {
+public:
+   void printLinkedListInReverse(ImmutableListNode* head) {
+      stack <ImmutableListNode*> st;
+      while(head){
+         st.push(head);
+         head = head->getNext();
+      }
+      while(!st.empty()){
+         st.top()->printValue();
+         st.pop();
+      }
+   }
+};
