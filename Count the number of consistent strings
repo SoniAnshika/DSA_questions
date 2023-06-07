@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        int c=0;
+        bool flag;
+        map<char,int>m;
+
+        for(int i=0;i<allowed.length();i++)
+        {
+            m[allowed[i]]++;
+        }
+
+        for(int i=0;i<words.size();i++)
+        {
+            string s=words[i];
+            flag=true;
+            for(int j=0;j<s.length();j++)
+            {
+                if(m[s[j]]<=0)
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            cout<<flag<<" ";
+            if(flag)
+                c++;
+        }
+        return c;
+    }
+};
