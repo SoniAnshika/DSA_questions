@@ -1,0 +1,27 @@
+class Solution
+{
+public:
+
+    void f(int ind,int sum,vector<int>&arr,int n,vector<int>&setsum)
+    {
+        if(ind==n)
+        {
+            setsum.push_back(sum);
+            return;
+        }
+        //Pick
+        f(ind+1,sum+arr[ind],arr,n,setsum);
+        //Not Pick
+        f(ind+1,sum,arr,n,setsum);
+    }
+
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int>setsum;
+        
+        f(0,0,arr,N,setsum);
+        
+        return setsum;
+    }
+};
